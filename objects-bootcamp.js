@@ -97,7 +97,9 @@ let onlyUserEmails = onlyKeepEmails(users);
 console.log(onlyUserEmails);
 
 Utmaning! - Reformat Emails
-Chefen på bolaget vill att alla användare ska få nya e-mailaddresser. Just nu följer deras e-mail formatet förnamn.efternamn@example.com men chefen vill att de ska följa formatet efternamn.förnamn@evilcorp.countrydomain.
+Chefen på bolaget vill att alla användare ska få nya e-mailaddresser. Just nu följer deras 
+e-mail formatet förnamn.efternamn@example.com men chefen vill att de ska följa 
+formatet efternamn.förnamn@evilcorp.countrydomain.
 
 Skapa en funktion som listar alla e-mail-adresser enligt det nya formatet.
 
@@ -119,4 +121,34 @@ Brasilien	BR	.br
 Kanada	CA	.ca
 
 */
+let domainObject = {
+    "FR": "fr",
+    "CH": "ch",
+    "DE": "de",
+    "NO": "no",
+    "US": "us",
+    "FI": "fi",
+    "GB": "uk",
+    "NL": "nl",
+    "NZ": "nz",
+    "AU": "au",
+    "ES": "ee",
+    "IE": "ie",
+    "DK": "dk",
+    "BR": "br",
+    "CA": "ca"
+}
 
+function replaceEmail(user){
+    if(domainObject[user.nat] == undefined){
+        user.email = user.name.last + "." + user.name.first + "@evilcorp.com";
+    }
+    else{
+        user.email = user.name.last + "." + user.name.first + "@evilcorp." + domainObject[user.nat];
+    }
+    
+    
+}
+
+users.map(replaceEmail);
+console.log(users);
